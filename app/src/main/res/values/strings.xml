@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SunRays</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="today">Today, $1s $2s</string>
+    <string name="temperature">%s&#xb0;</string>
+    <string name="temperature_type">Cloudy</string>
+
+</resources>
