@@ -1,24 +1,19 @@
 package weather.sunrays.com.sunrays;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import weather.sunrays.com.fragment.ForecastFragment;
 
 
 public class MainActivity extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new ForecastFragment())
                     .commit();
         }
     }
@@ -48,48 +43,29 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
+        if (id == R.id.action_location_map) {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+            String location = preferences.getString(getString(R.string.pref_location_key),
+                    getString(R.string.pref_location_default));
+            Uri geoLocation = Uri.parse("geo:0,0?").buildUpon()
+                    .appendQueryParameter("q", location).build();
+            showPreferredLocationInMap(geoLocation);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-            // Create some dummy data to be shown in list view
-            String[] dummyForcastData = new String[]{
-                    "Today - sunny - 88/63",
-                    "Tomorrow - foggy - 70/40",
-                    "Weds - Cloudy - 72/73",
-                    "Thursday - Asteroid 70/75",
-                    "Friday - Heavy Rain 65-56",
-                    "Saturday - HELP TRAPPED IN WEATHER STATION 70/68",
-                    "Sunday - sunny - 86/70"
-            };
-            List<String> fakeData = new ArrayList<String>(Arrays.asList(dummyForcastData));
-            ArrayAdapter<String> forcastAdapter = new ArrayAdapter<String>(
-                    // Context
-                    getActivity(),
-                    // list view item layout
-                    R.layout.list_item_forecast,
-                    // textview id
-                    R.id.list_item_forecast_textview,
-                    // data
-                    fakeData);
-            ListView weatherListView = (ListView) rootView.findViewById(R.id.list_view_forecast);
-            weatherListView.setAdapter(forcastAdapter);
-            return rootView;
+    public void showPreferredLocationInMap(Uri geoLocation) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(geoLocation);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
     }
+
 }
