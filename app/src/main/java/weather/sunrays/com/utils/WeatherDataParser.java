@@ -1,4 +1,4 @@
-package weather.sunrays.com.Utils;
+package weather.sunrays.com.utils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
