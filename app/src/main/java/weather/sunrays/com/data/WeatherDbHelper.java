@@ -7,6 +7,10 @@ package weather.sunrays.com.data;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.SimpleTimeZone;
+
 import weather.sunrays.com.data.WeatherContract.LocationEntry;
 import weather.sunrays.com.data.WeatherContract.WeatherEntry;
 
@@ -15,6 +19,7 @@ import weather.sunrays.com.data.WeatherContract.WeatherEntry;
  */
 public class WeatherDbHelper extends SQLiteOpenHelper {
 
+    private static final String TAG = WeatherDbHelper.class.getSimpleName();
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
 
@@ -32,11 +37,16 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
          * https://www.udacity.com/course/viewer#!/c-ud853/l-1639338560/e-1633698599/m-1633698600
          **/
 
-        final String SQL_CREATE_LOCATION_TABLE = "";
+        final String SQL_CREATE_LOCATION_TABLE = "CREATE TABLE " +  LocationEntry.TABLE_NAME + " (" +
+                LocationEntry._ID + " INTEGER PRIMARY KEY," +
+                LocationEntry.COLUMN_LOCATION_SETTING + " TEXT UNIQUE NOT NULL, " +
+                LocationEntry.COLUMN_CITY_NAME + " TEXT NOT NULL, " +
+                LocationEntry.COLUMN_COORD_LONG + " REAL NOT NULL, " +
+                LocationEntry.COLUMN_COORD_LAT + " REAL NOT NULL " + ");";
 
-        /* TODO Uncomment for
-         4a - Create a Database for SQLiteOpenHelper
-         https://www.udacity.com/course/viewer#!/c-ud853/l-1639338560/m-1633698598
+        Log.i(TAG, SQL_CREATE_LOCATION_TABLE);
+
+
         final String SQL_CREATE_WEATHER_TABLE = "CREATE TABLE " + WeatherEntry.TABLE_NAME + " (" +
                 // Why AutoIncrement here, and not above?
                 // Unique keys will be auto-generated in either case.  But for weather
@@ -70,14 +80,11 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(SQL_CREATE_LOCATION_TABLE);
         sqLiteDatabase.execSQL(SQL_CREATE_WEATHER_TABLE);
-        */
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        /* TODO Uncomment for
-        4a - SQLiteOpenHelper onUpgrade() method
-        https://www.udacity.com/course/viewer#!/c-ud853/l-1639338560/m-1633698602
+
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
         // Note that this only fires if you change the version number for your database.
@@ -87,6 +94,5 @@ public class WeatherDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + LocationEntry.TABLE_NAME);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WeatherEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
-        */
     }
 }
