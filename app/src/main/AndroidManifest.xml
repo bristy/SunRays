@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="weather.sunrays.com.sunrays">
+    package="weather.sunrays.com.activity">
 
     <!-- SunRays permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="weather.sunrays.com.sunrays.MainActivity"
+            android:name="weather.sunrays.com.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,20 +20,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="weather.sunrays.com.sunrays.DetailActivity"
+            android:name="weather.sunrays.com.activity.DetailActivity"
             android:label="@string/title_activity_detail"
-            android:parentActivityName="weather.sunrays.com.sunrays.MainActivity">
+            android:parentActivityName="weather.sunrays.com.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="weather.sunrays.com.sunrays.MainActivity" />
+                android:value="weather.sunrays.com.activity.MainActivity" />
         </activity>
         <activity
-            android:parentActivityName="weather.sunrays.com.sunrays.MainActivity"
-            android:name="weather.sunrays.com.sunrays.SettingsActivity"
+            android:parentActivityName="weather.sunrays.com.activity.MainActivity"
+            android:name="weather.sunrays.com.activity.SettingsActivity"
             android:label="@string/title_activity_settings">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="weather.sunrays.com.sunrays.MainActivity" />
+                android:value="weather.sunrays.com.activity.MainActivity" />
         </activity>
     </application>
 

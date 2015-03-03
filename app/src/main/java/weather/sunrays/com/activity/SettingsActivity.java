@@ -1,4 +1,4 @@
-package weather.sunrays.com.sunrays;
+package weather.sunrays.com.activity;
 
 /**
  * Created by brajesh on 3/12/14.

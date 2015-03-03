@@ -1,9 +1,8 @@
-package weather.sunrays.com.sunrays.test;
+package weather.sunrays.com.activity.test;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
-import weather.sunrays.com.data.WeatherContract.LocationEntry;
-import weather.sunrays.com.data.WeatherContract.WeatherEntry;
+
 import weather.sunrays.com.data.WeatherDbHelper;
 
 public class TestDb extends AndroidTestCase {

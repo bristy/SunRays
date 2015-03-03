@@ -1,4 +1,4 @@
-package weather.sunrays.com.sunrays;
+package weather.sunrays.com.activity;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

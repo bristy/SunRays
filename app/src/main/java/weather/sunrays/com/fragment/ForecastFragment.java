@@ -11,10 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
-import android.view.ActionProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,16 +29,14 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import weather.sunrays.com.helper.NetworkHelper;
 import weather.sunrays.com.network.RestClient;
-import weather.sunrays.com.sunrays.DetailActivity;
-import weather.sunrays.com.sunrays.R;
+import weather.sunrays.com.activity.DetailActivity;
+import weather.sunrays.com.activity.R;
 
 /**
  * A forecast fragment containing a simple view.
